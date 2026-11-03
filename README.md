@@ -7,25 +7,25 @@ Every hour the same set of measurement points in Russia opens the main page of e
 ## Latest month
 
 <!-- summary:en:start -->
-Month 2026-11 (UTC): in what share of hourly checks each service opened. Checks without a VPN: 15; through ProxysVPN: 6.
+Month 2026-11 (UTC): in what share of hourly checks each service opened. Checks without a VPN: 17; through ProxysVPN: 7.
 
 | Service | With ProxysVPN | Without VPN |
 | --- | --- | --- |
-| YouTube | ✅ opened 100% | partly 7%, did not open 93% |
+| YouTube | ✅ opened 100% | partly 6%, did not open 94% |
 | Telegram | ✅ opened 100% | did not open 100% |
 | WhatsApp | ✅ opened 100% | did not open 100% |
 | Instagram | ✅ opened 100% | did not open 100% |
-| Facebook | ✅ opened 100% | partly 7%, did not open 93% |
-| X (Twitter) | ✅ opened 100% | opened 7%, partly 93% |
+| Facebook | ✅ opened 100% | partly 6%, did not open 94% |
+| X (Twitter) | ✅ opened 100% | opened 6%, partly 94% |
 | TikTok | ✅ opened 100% | opened 100% |
-| Discord | ✅ opened 100% | opened 80%, partly 20% |
+| Discord | ✅ opened 100% | opened 82%, partly 18% |
 | ChatGPT | ✅ opened 100% | refused (403/451) 100% |
-| Gemini | ✅ opened 100% | opened 93%, no data 7% |
+| Gemini | ✅ opened 100% | opened 94%, no data 6% |
 | Signal | ✅ opened 100% | opened 100% |
 | Viber | ✅ opened 100% | did not open 100% |
 | Twitch | ✅ opened 100% | opened 100% |
 | Roblox | ✅ opened 100% | opened 100% |
-| LinkedIn | ✅ opened 100% | opened 7%, partly 73%, did not open 20% |
+| LinkedIn | ✅ opened 100% | opened 6%, partly 76%, did not open 18% |
 
 «With ProxysVPN»: our own check from our server in Moscow through ProxysVPN. «Without VPN»: public Globalping points in Russia, mostly data centres. Counts: `data/summary.csv` and `data/summary-through-proxysvpn.csv`. Updated automatically.
 <!-- summary:en:end -->
@@ -87,25 +87,25 @@ Questions: [proxysvpn.com/en/support](https://proxysvpn.com/en/support).
 Каждый час одни и те же точки в России открывают по HTTPS главную страницу каждого сервиса: YouTube, Telegram, WhatsApp, Instagram, Facebook, X, TikTok, Discord, ChatGPT, Gemini, Signal, Viber, Twitch, Roblox и LinkedIn. Точки — публичная сеть [Globalping](https://globalping.io), в основном серверы в дата-центрах разных городов и сетей. Точку, с которой не открылись Яндекс или Google, мы не считаем: у неё неисправна сама связь.
 
 <!-- summary:ru:start -->
-Месяц 2026-11 (UTC): в какой доле ежечасных проверок сервис открывался. Проверок без VPN: 15, через ProxysVPN: 6.
+Месяц 2026-11 (UTC): в какой доле ежечасных проверок сервис открывался. Проверок без VPN: 17, через ProxysVPN: 7.
 
 | Сервис | С ProxysVPN | Без VPN |
 | --- | --- | --- |
-| YouTube | ✅ открывался 100% | частично 7%, не открывался 93% |
+| YouTube | ✅ открывался 100% | частично 6%, не открывался 94% |
 | Telegram | ✅ открывался 100% | не открывался 100% |
 | WhatsApp | ✅ открывался 100% | не открывался 100% |
 | Instagram | ✅ открывался 100% | не открывался 100% |
-| Facebook | ✅ открывался 100% | частично 7%, не открывался 93% |
-| X (Twitter) | ✅ открывался 100% | открывался 7%, частично 93% |
+| Facebook | ✅ открывался 100% | частично 6%, не открывался 94% |
+| X (Twitter) | ✅ открывался 100% | открывался 6%, частично 94% |
 | TikTok | ✅ открывался 100% | открывался 100% |
-| Discord | ✅ открывался 100% | открывался 80%, частично 20% |
+| Discord | ✅ открывался 100% | открывался 82%, частично 18% |
 | ChatGPT | ✅ открывался 100% | отказ (403/451) 100% |
-| Gemini | ✅ открывался 100% | открывался 93%, нет данных 7% |
+| Gemini | ✅ открывался 100% | открывался 94%, нет данных 6% |
 | Signal | ✅ открывался 100% | открывался 100% |
 | Viber | ✅ открывался 100% | не открывался 100% |
 | Twitch | ✅ открывался 100% | открывался 100% |
 | Roblox | ✅ открывался 100% | открывался 100% |
-| LinkedIn | ✅ открывался 100% | открывался 7%, частично 73%, не открывался 20% |
+| LinkedIn | ✅ открывался 100% | открывался 6%, частично 76%, не открывался 18% |
 
 «С ProxysVPN» — наша проверка с нашего сервера в Москве через ProxysVPN. «Без VPN» — публичные точки Globalping в России, в основном дата-центры. Счётчики: `data/summary.csv` и `data/summary-through-proxysvpn.csv`. Обновляется автоматически.
 <!-- summary:ru:end -->

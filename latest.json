@@ -3,7 +3,7 @@
   "license": "CC-BY-4.0",
   "source": "https://proxysvpn.com/rabotaet-li",
   "method": "Hourly HTTPS HEAD of each service's main page from the same set of Russian Globalping probes (mostly data centres). Probes that fail ya.ru or www.google.com are dropped. ok = any HTTP answer except 403/451; refused = 403/451; blocked = timeout, reset or wrong certificate; dns = name not resolved. through_proxysvpn: the same check from our Moscow server through our WataFast protocol and one of our nodes abroad.",
-  "checked_at": "2026-11-03T21:12:05.775Z",
+  "checked_at": "2026-11-03T23:12:05.036Z",
   "points": [
     {
       "city": "Moscow",
@@ -15,7 +15,7 @@
     },
     {
       "city": "Moscow",
-      "network": "Mediasoft ekspert"
+      "network": "Selectel"
     },
     {
       "city": "Moscow",
@@ -27,15 +27,15 @@
     },
     {
       "city": "Moscow",
+      "network": "Yandex.Cloud"
+    },
+    {
+      "city": "Moscow",
       "network": "HOSTKEY"
     },
     {
       "city": "Moscow",
-      "network": "Selectel"
-    },
-    {
-      "city": "Moscow",
-      "network": "Yandex.Cloud"
+      "network": "Mediasoft ekspert"
     }
   ],
   "services": [
@@ -44,14 +44,14 @@
       "name": "YouTube",
       "host": "www.youtube.com",
       "verdict": "blocked",
-      "ok": 2,
+      "ok": 0,
       "refused": 0,
-      "blocked": 5,
+      "blocked": 7,
       "dns": 1,
       "counted": 8,
       "outcomes": [
-        "ok",
-        "ok",
+        "blocked",
+        "blocked",
         "blocked",
         "blocked",
         "dns",
@@ -65,13 +65,13 @@
       "name": "Telegram",
       "host": "web.telegram.org",
       "verdict": "blocked",
-      "ok": 0,
+      "ok": 1,
       "refused": 0,
-      "blocked": 8,
+      "blocked": 7,
       "dns": 0,
       "counted": 8,
       "outcomes": [
-        "blocked",
+        "ok",
         "blocked",
         "blocked",
         "blocked",
@@ -86,14 +86,14 @@
       "name": "WhatsApp",
       "host": "web.whatsapp.com",
       "verdict": "blocked",
-      "ok": 1,
+      "ok": 2,
       "refused": 0,
-      "blocked": 6,
+      "blocked": 5,
       "dns": 1,
       "counted": 8,
       "outcomes": [
         "ok",
-        "blocked",
+        "ok",
         "blocked",
         "blocked",
         "dns",
@@ -113,8 +113,8 @@
       "dns": 1,
       "counted": 8,
       "outcomes": [
-        "blocked",
         "ok",
+        "blocked",
         "blocked",
         "blocked",
         "dns",
@@ -128,14 +128,14 @@
       "name": "Facebook",
       "host": "www.facebook.com",
       "verdict": "blocked",
-      "ok": 1,
+      "ok": 0,
       "refused": 0,
-      "blocked": 6,
+      "blocked": 7,
       "dns": 1,
       "counted": 8,
       "outcomes": [
         "blocked",
-        "ok",
+        "blocked",
         "blocked",
         "blocked",
         "dns",
@@ -149,16 +149,16 @@
       "name": "X (Twitter)",
       "host": "x.com",
       "verdict": "partial",
-      "ok": 4,
+      "ok": 5,
       "refused": 0,
-      "blocked": 4,
+      "blocked": 3,
       "dns": 0,
       "counted": 8,
       "outcomes": [
         "ok",
+        "blocked",
         "ok",
-        "blocked",
-        "blocked",
+        "ok",
         "blocked",
         "ok",
         "ok",
@@ -199,12 +199,12 @@
       "outcomes": [
         "ok",
         "ok",
+        "ok",
+        "ok",
         "blocked",
         "ok",
-        "blocked",
         "ok",
-        "ok",
-        "ok"
+        "blocked"
       ]
     },
     {
@@ -275,9 +275,9 @@
       "name": "Viber",
       "host": "www.viber.com",
       "verdict": "blocked",
-      "ok": 2,
+      "ok": 1,
       "refused": 0,
-      "blocked": 6,
+      "blocked": 7,
       "dns": 0,
       "counted": 8,
       "outcomes": [
@@ -286,7 +286,7 @@
         "blocked",
         "blocked",
         "blocked",
-        "ok",
+        "blocked",
         "blocked",
         "blocked"
       ]
@@ -338,25 +338,25 @@
       "name": "LinkedIn",
       "host": "www.linkedin.com",
       "verdict": "partial",
-      "ok": 3,
+      "ok": 5,
       "refused": 0,
-      "blocked": 4,
+      "blocked": 2,
       "dns": 1,
       "counted": 8,
       "outcomes": [
         "ok",
-        "blocked",
-        "blocked",
+        "ok",
+        "ok",
         "blocked",
         "dns",
         "ok",
-        "blocked",
-        "ok"
+        "ok",
+        "blocked"
       ]
     }
   ],
   "through_proxysvpn": {
-    "checked_at": "2026-11-03T21:31:08.674Z",
+    "checked_at": "2026-11-03T23:31:07.165Z",
     "protocol": "WataFast",
     "exit": "DE",
     "outcomes": {
@@ -378,6 +378,46 @@
     }
   },
   "history": [
+    {
+      "at": "2026-11-03T23:12:05.036Z",
+      "verdicts": {
+        "youtube": "blocked",
+        "telegram": "blocked",
+        "whatsapp": "blocked",
+        "instagram": "blocked",
+        "facebook": "blocked",
+        "x": "partial",
+        "tiktok": "works",
+        "discord": "works",
+        "chatgpt": "refused",
+        "gemini": "works",
+        "signal": "works",
+        "viber": "blocked",
+        "twitch": "works",
+        "roblox": "works",
+        "linkedin": "partial"
+      }
+    },
+    {
+      "at": "2026-11-03T22:12:05.091Z",
+      "verdicts": {
+        "youtube": "blocked",
+        "telegram": "blocked",
+        "whatsapp": "blocked",
+        "instagram": "blocked",
+        "facebook": "blocked",
+        "x": "partial",
+        "tiktok": "works",
+        "discord": "works",
+        "chatgpt": "refused",
+        "gemini": "works",
+        "signal": "works",
+        "viber": "blocked",
+        "twitch": "works",
+        "roblox": "works",
+        "linkedin": "partial"
+      }
+    },
     {
       "at": "2026-11-03T21:12:05.775Z",
       "verdicts": {
