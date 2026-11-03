@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this dataset, please cite it as below."
+title: "Do popular services open from Russia? Hourly open data"
+type: dataset
+authors:
+  - name: "ProxysVPN"
+    website: "https://proxysvpn.com"
+abstract: >-
+  Every hour the same set of public Globalping measurement points in Russia,
+  mostly data-centre servers, opens the main page of popular services
+  (YouTube, Telegram, WhatsApp, Instagram and others) over HTTPS without a VPN.
+  One row per check and service. A separate file holds the same check made
+  through ProxysVPN from Moscow. Published by ProxysVPN, a paid VPN service.
+url: "https://proxysvpn.com/rabotaet-li"
+license: CC-BY-4.0
+date-released: 2026-11-03
+keywords:
+  - internet measurement
+  - censorship
+  - Russia
+  - availability
+  - YouTube
+  - Telegram
