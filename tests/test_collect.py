@@ -151,12 +151,26 @@ class StoreTest(unittest.TestCase):
         summary = rows(self.root / "data/summary.csv")
         x = next(r for r in summary if r["service"] == "x")
         self.assertEqual((x["month"], x["checks"], x["works"], x["partial"], x["blocked"]), ("2026-11", "2", "1", "1", "0"))
+        through = rows(self.root / "data/summary-through-proxysvpn.csv")
+        self.assertEqual([(r["service"], r["checks"], r["ok"]) for r in through], [("youtube", "1", "1"), ("x", "1", "1")])
         text = (self.root / "README.md").read_text(encoding="utf-8")
-        self.assertIn("| X (Twitter) | 2 | 50% | 50% | 0% | 0% | 0% |", text)
-        self.assertIn("| YouTube | 2 | 0% | 0% | 100% | 0% | 0% |", text)
-        self.assertIn("Месяц 2026-11 (UTC)", text)
+        # With ProxysVPN first, ticked; without a VPN beside it, only the verdicts that happened.
+        self.assertIn("| Service | With ProxysVPN | Without VPN |", text)
+        self.assertIn("| YouTube | ✅ opened 100% | did not open 100% |", text)
+        self.assertIn("| X (Twitter) | ✅ opened 100% | opened 50%, partly 50% |", text)
+        self.assertIn("| Сервис | С ProxysVPN | Без VPN |", text)
+        self.assertIn("| YouTube | ✅ открывался 100% | не открывался 100% |", text)
+        self.assertIn("Проверок без VPN: 2, через ProxysVPN: 1.", text)
         self.assertNotIn("No data yet.", text)
         self.assertTrue(text.startswith("# Title"))
+
+    def test_cells_tick_only_near_every_check_and_dash_without_data(self) -> None:
+        words = collect.TABLES["ru"]
+        self.assertEqual(collect.vpn_cell(words, None), "—")
+        self.assertEqual(collect.vpn_cell(words, ("2026-11", "x", "10", "9", "0", "1", "0", "0")), "✅ открывался 90%")
+        self.assertEqual(collect.vpn_cell(words, ("2026-11", "x", "10", "8", "0", "2", "0", "0")), "открывался 80%")
+        self.assertEqual(collect.direct_cell(words, ("2026-11", "x", "4", "1", "0", "3", "0", "0")), "открывался 25%, не открывался 75%")
+        self.assertEqual(collect.direct_cell(words, ("2026-11", "x", "0", "0", "0", "0", "0", "0")), "—")
 
     def test_a_service_the_site_drops_stays_in_the_list(self) -> None:
         collect.store(collect.validate(raw(document()), NOW), self.root)

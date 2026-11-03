@@ -8,7 +8,8 @@ checks it, and merges it into monthly CSV files under ``data/``:
 - ``data/snapshots/YYYY-MM.csv``: the point counts behind each verdict, for the runs this job saw;
 - ``data/through-proxysvpn/YYYY-MM.csv``: the same services opened through ProxysVPN;
 - ``data/services.csv``: the services and the address each check opens;
-- ``data/summary.csv``: per month and service, how many checks ended in each verdict.
+- ``data/summary.csv``: per month and service, how many checks ended in each verdict;
+- ``data/summary-through-proxysvpn.csv``: the same for the checks through ProxysVPN.
 
 It also writes ``latest.json`` and refreshes the summary tables in ``README.md``.
 A row already stored is never stored twice, so the job may run as often as it likes.
@@ -56,6 +57,8 @@ SNAPSHOT_FIELDS: Final[tuple[str, ...]] = ("checked_at", "service", "verdict", "
 THROUGH_FIELDS: Final[tuple[str, ...]] = ("checked_at", "exit", "service", "outcome")
 SERVICE_FIELDS: Final[tuple[str, ...]] = ("service", "name", "host")
 SUMMARY_FIELDS: Final[tuple[str, ...]] = ("month", "service", "checks", *VERDICTS)
+OUTCOME_ORDER: Final[tuple[str, ...]] = ("ok", "refused", "blocked", "dns", "failed")
+THROUGH_SUMMARY_FIELDS: Final[tuple[str, ...]] = ("month", "service", "checks", *OUTCOME_ORDER)
 
 Row = tuple[str, ...]
 
@@ -291,59 +294,119 @@ def merge_services(path: Path, current: Sequence[Row]) -> list[Row]:
     return merged
 
 
-def summarize(hourly_dir: Path, services: Sequence[Row]) -> list[Row]:
-    """Per month and service: checks and how many ended in each verdict. O(rows)."""
-    order = {r[0]: i for i, r in enumerate(services)}
+def _tally(folder: Path, fields: Sequence[str], service_at: int, value_at: int) -> dict[tuple[str, str], Counter[str]]:
     tally: dict[tuple[str, str], Counter[str]] = {}
-    if hourly_dir.is_dir():
-        for path in sorted(hourly_dir.iterdir()):
+    if folder.is_dir():
+        for path in sorted(folder.iterdir()):
             m = MONTH_FILE.match(path.name)
             if not m:
                 continue
-            for checked_at, sid, verdict in read_rows(path, HOURLY_FIELDS):
-                tally.setdefault((m.group(1), sid), Counter())[verdict] += 1
+            for r in read_rows(path, fields):
+                tally.setdefault((m.group(1), r[service_at]), Counter())[r[value_at]] += 1
+    return tally
+
+
+def _summary_rows(tally: Mapping[tuple[str, str], Counter[str]], order_of: Sequence[str], services: Sequence[Row]) -> list[Row]:
+    order = {r[0]: i for i, r in enumerate(services)}
     keys = sorted(tally, key=lambda k: (k[0], order.get(k[1], len(order)), k[1]))
-    return [(month, sid, str(sum(tally[(month, sid)].values())), *(str(tally[(month, sid)][v]) for v in VERDICTS)) for month, sid in keys]
+    return [(month, sid, str(sum(tally[(month, sid)].values())), *(str(tally[(month, sid)][v]) for v in order_of)) for month, sid in keys]
+
+
+def summarize(hourly_dir: Path, services: Sequence[Row]) -> list[Row]:
+    """Per month and service: checks without a VPN and how many ended in each verdict. O(rows)."""
+    return _summary_rows(_tally(hourly_dir, HOURLY_FIELDS, 1, 2), VERDICTS, services)
+
+
+def summarize_through(through_dir: Path, services: Sequence[Row]) -> list[Row]:
+    """Per month and service: checks through ProxysVPN and how many ended in each outcome. O(rows)."""
+    return _summary_rows(_tally(through_dir, THROUGH_FIELDS, 2, 3), OUTCOME_ORDER, services)
 
 
 # ── README tables ───────────────────────────────────────────────────────────
 
-TABLES: Final[Mapping[str, tuple[str, tuple[str, ...], str]]] = {
-    "en": (
-        "Month {month} (UTC), share of hourly checks without a VPN:",
-        ("Service", "Checks", "Opened", "Partly", "Did not open", "Refused (403/451)", "No data"),
-        "Updated automatically from `data/summary.csv`.",
-    ),
-    "ru": (
-        "Месяц {month} (UTC), доля ежечасных проверок без VPN:",
-        ("Сервис", "Проверок", "Открывался", "Частично", "Не открывался", "Отказ (403/451)", "Нет данных"),
-        "Обновляется автоматически из `data/summary.csv`.",
-    ),
+# With ProxysVPN first, without a VPN beside it: a table of «did not open» alone
+# reads as «nothing works», so each row shows both.
+TABLES: Final[Mapping[str, Mapping[str, str]]] = {
+    "en": {
+        "title": "Month {month} (UTC): in what share of hourly checks each service opened. "
+        "Checks without a VPN: {direct}; through ProxysVPN: {through}.",
+        "service": "Service",
+        "vpn": "With ProxysVPN",
+        "direct": "Without VPN",
+        "note": "«With ProxysVPN»: our own check from our server in Moscow through ProxysVPN. «Without VPN»: public "
+        "Globalping points in Russia, mostly data centres. Counts: `data/summary.csv` and "
+        "`data/summary-through-proxysvpn.csv`. Updated automatically.",
+        "empty": "No data yet.",
+        "works": "opened",
+        "partial": "partly",
+        "blocked": "did not open",
+        "refused": "refused (403/451)",
+        "unknown": "no data",
+    },
+    "ru": {
+        "title": "Месяц {month} (UTC): в какой доле ежечасных проверок сервис открывался. "
+        "Проверок без VPN: {direct}, через ProxysVPN: {through}.",
+        "service": "Сервис",
+        "vpn": "С ProxysVPN",
+        "direct": "Без VPN",
+        "note": "«С ProxysVPN» — наша проверка с нашего сервера в Москве через ProxysVPN. «Без VPN» — публичные точки "
+        "Globalping в России, в основном дата-центры. Счётчики: `data/summary.csv` и "
+        "`data/summary-through-proxysvpn.csv`. Обновляется автоматически.",
+        "empty": "Данных пока нет.",
+        "works": "открывался",
+        "partial": "частично",
+        "blocked": "не открывался",
+        "refused": "отказ (403/451)",
+        "unknown": "нет данных",
+    },
 }
+# A tick only when the service opened through ProxysVPN in nearly every check.
+TICK_SHARE: Final[float] = 0.9
 
 
 def percent(part: int, whole: int) -> str:
     return f"{round(100 * part / whole)}%" if whole else "—"
 
 
-def table(lang: str, summary: Sequence[Row], services: Sequence[Row]) -> str:
-    title, header, note = TABLES[lang]
+def vpn_cell(words: Mapping[str, str], row: Row | None) -> str:
+    if row is None or int(row[2]) == 0:
+        return "—"
+    checks, ok = int(row[2]), int(row[3])
+    text = f"{words['works']} {percent(ok, checks)}"
+    return f"✅ {text}" if ok / checks >= TICK_SHARE else text
+
+
+def direct_cell(words: Mapping[str, str], row: Row) -> str:
+    checks = int(row[2])
+    parts = [f"{words[v]} {percent(int(n), checks)}" for v, n in zip(VERDICTS, row[3:]) if int(n) > 0]
+    return ", ".join(parts) if parts else "—"
+
+
+def table(lang: str, summary: Sequence[Row], through: Sequence[Row], services: Sequence[Row]) -> str:
+    words = TABLES[lang]
     if not summary:
-        return "No data yet." if lang == "en" else "Данных пока нет."
+        return words["empty"]
     month = max(r[0] for r in summary)
     names = {r[0]: r[1] for r in services}
-    lines = [title.format(month=month), "", "| " + " | ".join(header) + " |", "| " + " | ".join(["---"] + ["---:"] * (len(header) - 1)) + " |"]
-    for r in summary:
-        if r[0] != month:
-            continue
-        checks = int(r[2])
-        counts = [int(x) for x in r[3:]]
-        lines.append("| " + " | ".join([names.get(r[1], r[1]), str(checks), *(percent(c, checks) for c in counts)]) + " |")
-    lines += ["", note]
+    vpn = {r[1]: r for r in through if r[0] == month}
+    direct = [r for r in summary if r[0] == month]
+    lines = [
+        words["title"].format(
+            month=month,
+            direct=max(int(r[2]) for r in direct),
+            through=max((int(r[2]) for r in vpn.values()), default=0),
+        ),
+        "",
+        f"| {words['service']} | {words['vpn']} | {words['direct']} |",
+        "| --- | --- | --- |",
+    ]
+    for r in direct:
+        lines.append(f"| {names.get(r[1], r[1])} | {vpn_cell(words, vpn.get(r[1]))} | {direct_cell(words, r)} |")
+    lines += ["", words["note"]]
     return "\n".join(lines)
 
 
-def refresh_readme(path: Path, summary: Sequence[Row], services: Sequence[Row]) -> bool:
+def refresh_readme(path: Path, summary: Sequence[Row], through: Sequence[Row], services: Sequence[Row]) -> bool:
     """Replace the text between the summary markers. Returns True when the file changed."""
     if not path.exists():
         return False
@@ -354,7 +417,7 @@ def refresh_readme(path: Path, summary: Sequence[Row], services: Sequence[Row]) 
         a, b = new.find(start), new.find(end)
         if a == -1 or b == -1 or b < a:
             raise Refused(f"README.md: markers for {lang} missing")
-        new = new[: a + len(start)] + "\n" + table(lang, summary, services) + "\n" + new[b:]
+        new = new[: a + len(start)] + "\n" + table(lang, summary, through, services) + "\n" + new[b:]
     if new != text:
         write_atomic(path, new)
         return True
@@ -375,7 +438,10 @@ def store(parsed: Parsed, root: Path) -> dict[str, int]:
     summary = summarize(data / "hourly", services)
     if summary != read_rows(data / "summary.csv", SUMMARY_FIELDS):
         write_rows(data / "summary.csv", SUMMARY_FIELDS, summary)
-    refresh_readme(root / "README.md", summary, services)
+    through = summarize_through(data / "through-proxysvpn", services)
+    if through != read_rows(data / "summary-through-proxysvpn.csv", THROUGH_SUMMARY_FIELDS):
+        write_rows(data / "summary-through-proxysvpn.csv", THROUGH_SUMMARY_FIELDS, through)
+    refresh_readme(root / "README.md", summary, through, services)
     write_atomic(root / "latest.json", json.dumps(parsed.document, ensure_ascii=False, indent=2) + "\n")
     return added
 
