@@ -1,13 +1,15 @@
 # Every hour: store the newest checks of proxysvpn.com/rabotaet-li.json in data/.
 # The site checks at minute 11 and keeps the last 24 checks in the document, so
-# a run GitHub delays or skips is filled in by the next one. A row already
-# stored is skipped; a commit happens only when something new arrived.
+# a run GitHub delays or skips is filled in by the next one. Two slots an hour,
+# because GitHub drops scheduled runs at busy times. A row already stored is
+# skipped; a commit happens only when something new arrived.
 
 name: collect
 
 on:
   schedule:
     - cron: "23 * * * *"
+    - cron: "53 * * * *"
   workflow_dispatch:
 
 permissions:
