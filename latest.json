@@ -1,0 +1,383 @@
+{
+  "schema": "proxysvpn-ru-services/1",
+  "license": "CC-BY-4.0",
+  "source": "https://proxysvpn.com/rabotaet-li",
+  "method": "Hourly HTTPS HEAD of each service's main page from the same set of Russian Globalping probes (mostly data centres). Probes that fail ya.ru or www.google.com are dropped. ok = any HTTP answer except 403/451; refused = 403/451; blocked = timeout, reset or wrong certificate; dns = name not resolved. through_proxysvpn: the same check from our Moscow server through our WataFast protocol and one of our nodes abroad.",
+  "checked_at": "2026-11-03T07:12:05.838Z",
+  "points": [
+    {
+      "city": "Moscow",
+      "network": "Timeweb"
+    },
+    {
+      "city": "Saint Petersburg",
+      "network": "Selectel"
+    },
+    {
+      "city": "Moscow",
+      "network": "Cloud.ru"
+    },
+    {
+      "city": "Moscow",
+      "network": "IOT"
+    },
+    {
+      "city": "Moscow",
+      "network": "Mediasoft ekspert"
+    },
+    {
+      "city": "Moscow",
+      "network": "Selectel"
+    },
+    {
+      "city": "Novosibirsk",
+      "network": "Adman"
+    }
+  ],
+  "services": [
+    {
+      "slug": "youtube",
+      "name": "YouTube",
+      "host": "www.youtube.com",
+      "verdict": "blocked",
+      "ok": 0,
+      "refused": 0,
+      "blocked": 7,
+      "dns": 0,
+      "counted": 7,
+      "outcomes": [
+        "blocked",
+        "blocked",
+        "blocked",
+        "blocked",
+        "blocked",
+        "blocked",
+        "blocked"
+      ]
+    },
+    {
+      "slug": "telegram",
+      "name": "Telegram",
+      "host": "web.telegram.org",
+      "verdict": "blocked",
+      "ok": 0,
+      "refused": 0,
+      "blocked": 7,
+      "dns": 0,
+      "counted": 7,
+      "outcomes": [
+        "blocked",
+        "blocked",
+        "blocked",
+        "blocked",
+        "blocked",
+        "blocked",
+        "blocked"
+      ]
+    },
+    {
+      "slug": "whatsapp",
+      "name": "WhatsApp",
+      "host": "web.whatsapp.com",
+      "verdict": "blocked",
+      "ok": 1,
+      "refused": 0,
+      "blocked": 6,
+      "dns": 0,
+      "counted": 7,
+      "outcomes": [
+        "ok",
+        "blocked",
+        "blocked",
+        "blocked",
+        "blocked",
+        "blocked",
+        "blocked"
+      ]
+    },
+    {
+      "slug": "instagram",
+      "name": "Instagram",
+      "host": "www.instagram.com",
+      "verdict": "blocked",
+      "ok": 0,
+      "refused": 0,
+      "blocked": 7,
+      "dns": 0,
+      "counted": 7,
+      "outcomes": [
+        "blocked",
+        "blocked",
+        "blocked",
+        "blocked",
+        "blocked",
+        "blocked",
+        "blocked"
+      ]
+    },
+    {
+      "slug": "facebook",
+      "name": "Facebook",
+      "host": "www.facebook.com",
+      "verdict": "blocked",
+      "ok": 1,
+      "refused": 0,
+      "blocked": 6,
+      "dns": 0,
+      "counted": 7,
+      "outcomes": [
+        "blocked",
+        "blocked",
+        "ok",
+        "blocked",
+        "blocked",
+        "blocked",
+        "blocked"
+      ]
+    },
+    {
+      "slug": "x",
+      "name": "X (Twitter)",
+      "host": "x.com",
+      "verdict": "partial",
+      "ok": 4,
+      "refused": 0,
+      "blocked": 3,
+      "dns": 0,
+      "counted": 7,
+      "outcomes": [
+        "ok",
+        "ok",
+        "ok",
+        "blocked",
+        "blocked",
+        "ok",
+        "blocked"
+      ]
+    },
+    {
+      "slug": "tiktok",
+      "name": "TikTok",
+      "host": "www.tiktok.com",
+      "verdict": "works",
+      "ok": 7,
+      "refused": 0,
+      "blocked": 0,
+      "dns": 0,
+      "counted": 7,
+      "outcomes": [
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok"
+      ]
+    },
+    {
+      "slug": "discord",
+      "name": "Discord",
+      "host": "discord.com",
+      "verdict": "partial",
+      "ok": 5,
+      "refused": 0,
+      "blocked": 2,
+      "dns": 0,
+      "counted": 7,
+      "outcomes": [
+        "ok",
+        "ok",
+        "ok",
+        "blocked",
+        "blocked",
+        "ok",
+        "ok"
+      ]
+    },
+    {
+      "slug": "chatgpt",
+      "name": "ChatGPT",
+      "host": "chatgpt.com",
+      "verdict": "refused",
+      "ok": 0,
+      "refused": 7,
+      "blocked": 0,
+      "dns": 0,
+      "counted": 7,
+      "outcomes": [
+        "refused",
+        "refused",
+        "refused",
+        "refused",
+        "refused",
+        "refused",
+        "refused"
+      ]
+    },
+    {
+      "slug": "gemini",
+      "name": "Gemini",
+      "host": "gemini.google.com",
+      "verdict": "unknown",
+      "ok": 0,
+      "refused": 0,
+      "blocked": 0,
+      "dns": 0,
+      "counted": 0,
+      "outcomes": [
+        "failed",
+        "failed",
+        "failed",
+        "failed",
+        "failed",
+        "failed",
+        "failed"
+      ]
+    },
+    {
+      "slug": "signal",
+      "name": "Signal",
+      "host": "signal.org",
+      "verdict": "works",
+      "ok": 7,
+      "refused": 0,
+      "blocked": 0,
+      "dns": 0,
+      "counted": 7,
+      "outcomes": [
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok"
+      ]
+    },
+    {
+      "slug": "viber",
+      "name": "Viber",
+      "host": "www.viber.com",
+      "verdict": "blocked",
+      "ok": 1,
+      "refused": 0,
+      "blocked": 6,
+      "dns": 0,
+      "counted": 7,
+      "outcomes": [
+        "ok",
+        "blocked",
+        "blocked",
+        "blocked",
+        "blocked",
+        "blocked",
+        "blocked"
+      ]
+    },
+    {
+      "slug": "twitch",
+      "name": "Twitch",
+      "host": "www.twitch.tv",
+      "verdict": "works",
+      "ok": 7,
+      "refused": 0,
+      "blocked": 0,
+      "dns": 0,
+      "counted": 7,
+      "outcomes": [
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok"
+      ]
+    },
+    {
+      "slug": "roblox",
+      "name": "Roblox",
+      "host": "www.roblox.com",
+      "verdict": "works",
+      "ok": 7,
+      "refused": 0,
+      "blocked": 0,
+      "dns": 0,
+      "counted": 7,
+      "outcomes": [
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok",
+        "ok"
+      ]
+    },
+    {
+      "slug": "linkedin",
+      "name": "LinkedIn",
+      "host": "www.linkedin.com",
+      "verdict": "partial",
+      "ok": 4,
+      "refused": 0,
+      "blocked": 3,
+      "dns": 0,
+      "counted": 7,
+      "outcomes": [
+        "ok",
+        "ok",
+        "blocked",
+        "blocked",
+        "blocked",
+        "ok",
+        "ok"
+      ]
+    }
+  ],
+  "through_proxysvpn": {
+    "checked_at": "2026-11-03T07:31:16.267Z",
+    "protocol": "WataFast",
+    "exit": "DE",
+    "outcomes": {
+      "youtube": "ok",
+      "telegram": "ok",
+      "whatsapp": "ok",
+      "instagram": "ok",
+      "facebook": "ok",
+      "x": "ok",
+      "tiktok": "ok",
+      "discord": "ok",
+      "chatgpt": "ok",
+      "gemini": "ok",
+      "signal": "ok",
+      "viber": "ok",
+      "twitch": "ok",
+      "roblox": "ok",
+      "linkedin": "ok"
+    }
+  },
+  "history": [
+    {
+      "at": "2026-11-03T07:12:05.838Z",
+      "verdicts": {
+        "youtube": "blocked",
+        "telegram": "blocked",
+        "whatsapp": "blocked",
+        "instagram": "blocked",
+        "facebook": "blocked",
+        "x": "partial",
+        "tiktok": "works",
+        "discord": "partial",
+        "chatgpt": "refused",
+        "gemini": "unknown",
+        "signal": "works",
+        "viber": "blocked",
+        "twitch": "works",
+        "roblox": "works",
+        "linkedin": "partial"
+      }
+    }
+  ]
+}

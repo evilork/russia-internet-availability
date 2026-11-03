@@ -1,0 +1,16 @@
+checked_at,service,verdict
+2026-11-03T07:12:05Z,chatgpt,refused
+2026-11-03T07:12:05Z,discord,partial
+2026-11-03T07:12:05Z,facebook,blocked
+2026-11-03T07:12:05Z,gemini,unknown
+2026-11-03T07:12:05Z,instagram,blocked
+2026-11-03T07:12:05Z,linkedin,partial
+2026-11-03T07:12:05Z,roblox,works
+2026-11-03T07:12:05Z,signal,works
+2026-11-03T07:12:05Z,telegram,blocked
+2026-11-03T07:12:05Z,tiktok,works
+2026-11-03T07:12:05Z,twitch,works
+2026-11-03T07:12:05Z,viber,blocked
+2026-11-03T07:12:05Z,whatsapp,blocked
+2026-11-03T07:12:05Z,x,partial
+2026-11-03T07:12:05Z,youtube,blocked

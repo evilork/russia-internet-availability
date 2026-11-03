@@ -1,0 +1,16 @@
+checked_at,service,verdict,ok,refused,blocked,dns,counted
+2026-11-03T07:12:05Z,chatgpt,refused,0,7,0,0,7
+2026-11-03T07:12:05Z,discord,partial,5,0,2,0,7
+2026-11-03T07:12:05Z,facebook,blocked,1,0,6,0,7
+2026-11-03T07:12:05Z,gemini,unknown,0,0,0,0,0
+2026-11-03T07:12:05Z,instagram,blocked,0,0,7,0,7
+2026-11-03T07:12:05Z,linkedin,partial,4,0,3,0,7
+2026-11-03T07:12:05Z,roblox,works,7,0,0,0,7
+2026-11-03T07:12:05Z,signal,works,7,0,0,0,7
+2026-11-03T07:12:05Z,telegram,blocked,0,0,7,0,7
+2026-11-03T07:12:05Z,tiktok,works,7,0,0,0,7
+2026-11-03T07:12:05Z,twitch,works,7,0,0,0,7
+2026-11-03T07:12:05Z,viber,blocked,1,0,6,0,7
+2026-11-03T07:12:05Z,whatsapp,blocked,1,0,6,0,7
+2026-11-03T07:12:05Z,x,partial,4,0,3,0,7
+2026-11-03T07:12:05Z,youtube,blocked,0,0,7,0,7
