@@ -33,7 +33,7 @@ from collections import Counter
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any, Final, Iterable, Mapping, Sequence
+from typing import Any, Callable, Final, Iterable, Mapping, Sequence
 
 SOURCE: Final[str] = "https://proxysvpn.com/rabotaet-li.json"
 SCHEMA: Final[str] = "proxysvpn-ru-services/1"
@@ -59,6 +59,12 @@ SERVICE_FIELDS: Final[tuple[str, ...]] = ("service", "name", "host")
 SUMMARY_FIELDS: Final[tuple[str, ...]] = ("month", "service", "checks", *VERDICTS)
 OUTCOME_ORDER: Final[tuple[str, ...]] = ("ok", "refused", "blocked", "dns", "failed")
 THROUGH_SUMMARY_FIELDS: Final[tuple[str, ...]] = ("month", "service", "checks", *OUTCOME_ORDER)
+
+# «Without VPN» has been measured from Russian home networks only since the
+# site's deploy of 2026-11-04 00:27 UTC (first such run 01:11 UTC). Earlier
+# rows come from mostly data-centre probes, where blocks often do not apply.
+# The CSV files keep every row; the README table counts only the home ones.
+HOME_SINCE: Final[str] = "2026-11-04T01:00:00Z"
 
 Row = tuple[str, ...]
 
@@ -294,7 +300,13 @@ def merge_services(path: Path, current: Sequence[Row]) -> list[Row]:
     return merged
 
 
-def _tally(folder: Path, fields: Sequence[str], service_at: int, value_at: int) -> dict[tuple[str, str], Counter[str]]:
+def _tally(
+    folder: Path,
+    fields: Sequence[str],
+    service_at: int,
+    value_at: int,
+    keep: Callable[[Row], bool] = lambda _r: True,
+) -> dict[tuple[str, str], Counter[str]]:
     tally: dict[tuple[str, str], Counter[str]] = {}
     if folder.is_dir():
         for path in sorted(folder.iterdir()):
@@ -302,7 +314,8 @@ def _tally(folder: Path, fields: Sequence[str], service_at: int, value_at: int) 
             if not m:
                 continue
             for r in read_rows(path, fields):
-                tally.setdefault((m.group(1), r[service_at]), Counter())[r[value_at]] += 1
+                if keep(r):
+                    tally.setdefault((m.group(1), r[service_at]), Counter())[r[value_at]] += 1
     return tally
 
 
@@ -315,6 +328,16 @@ def _summary_rows(tally: Mapping[tuple[str, str], Counter[str]], order_of: Seque
 def summarize(hourly_dir: Path, services: Sequence[Row]) -> list[Row]:
     """Per month and service: checks without a VPN and how many ended in each verdict. O(rows)."""
     return _summary_rows(_tally(hourly_dir, HOURLY_FIELDS, 1, 2), VERDICTS, services)
+
+
+def is_home(row: Row) -> bool:
+    """An hourly row measured from home networks (ISO UTC stamps compare as text)."""
+    return row[0] >= HOME_SINCE
+
+
+def summarize_home(hourly_dir: Path, services: Sequence[Row]) -> list[Row]:
+    """summarize() over the rows measured from home networks only (is_home). O(rows)."""
+    return _summary_rows(_tally(hourly_dir, HOURLY_FIELDS, 1, 2, is_home), VERDICTS, services)
 
 
 def summarize_through(through_dir: Path, services: Sequence[Row]) -> list[Row]:
@@ -334,8 +357,9 @@ TABLES: Final[Mapping[str, Mapping[str, str]]] = {
         "vpn": "With ProxysVPN",
         "direct": "Without VPN",
         "note": "«With ProxysVPN»: our own check from our server in Moscow through ProxysVPN. «Without VPN»: public "
-        "Globalping points in Russia, mostly data centres. Counts: `data/summary.csv` and "
-        "`data/summary-through-proxysvpn.csv`. Updated automatically.",
+        "Globalping points on Russian home networks; this table counts only checks since 4 November 2026, 01:00 UTC "
+        "(earlier rows in `data/hourly` come from mostly data-centre points). Counts of every row: "
+        "`data/summary.csv` and `data/summary-through-proxysvpn.csv`. Updated automatically.",
         "empty": "No data yet.",
         "works": "opened",
         "partial": "partly",
@@ -350,8 +374,9 @@ TABLES: Final[Mapping[str, Mapping[str, str]]] = {
         "vpn": "С ProxysVPN",
         "direct": "Без VPN",
         "note": "«С ProxysVPN» — наша проверка с нашего сервера в Москве через ProxysVPN. «Без VPN» — публичные точки "
-        "Globalping в России, в основном дата-центры. Счётчики: `data/summary.csv` и "
-        "`data/summary-through-proxysvpn.csv`. Обновляется автоматически.",
+        "Globalping на домашнем интернете в России; в таблице только проверки с 4 ноября 2026, 01:00 UTC "
+        "(более ранние строки в `data/hourly` — в основном с серверов в дата-центрах). Счётчики всех строк: "
+        "`data/summary.csv` и `data/summary-through-proxysvpn.csv`. Обновляется автоматически.",
         "empty": "Данных пока нет.",
         "works": "открывался",
         "partial": "частично",
@@ -376,32 +401,39 @@ def vpn_cell(words: Mapping[str, str], row: Row | None) -> str:
     return f"✅ {text}" if ok / checks >= TICK_SHARE else text
 
 
-def direct_cell(words: Mapping[str, str], row: Row) -> str:
+def direct_cell(words: Mapping[str, str], row: Row | None) -> str:
+    if row is None:
+        return "—"
     checks = int(row[2])
     parts = [f"{words[v]} {percent(int(n), checks)}" for v, n in zip(VERDICTS, row[3:]) if int(n) > 0]
     return ", ".join(parts) if parts else "—"
 
 
 def table(lang: str, summary: Sequence[Row], through: Sequence[Row], services: Sequence[Row]) -> str:
+    """The README table of the latest month; `summary` is the home-network one (summarize_home)."""
     words = TABLES[lang]
-    if not summary:
+    months = [r[0] for r in summary] + [r[0] for r in through]
+    if not months:
         return words["empty"]
-    month = max(r[0] for r in summary)
+    month = max(months)
     names = {r[0]: r[1] for r in services}
     vpn = {r[1]: r for r in through if r[0] == month}
-    direct = [r for r in summary if r[0] == month]
+    direct = {r[1]: r for r in summary if r[0] == month}
+    order = [r[0] for r in services]
+    listed = set(order)
+    ids = [sid for sid in order if sid in vpn or sid in direct] + sorted((set(vpn) | set(direct)) - listed)
     lines = [
         words["title"].format(
             month=month,
-            direct=max(int(r[2]) for r in direct),
+            direct=max((int(r[2]) for r in direct.values()), default=0),
             through=max((int(r[2]) for r in vpn.values()), default=0),
         ),
         "",
         f"| {words['service']} | {words['vpn']} | {words['direct']} |",
         "| --- | --- | --- |",
     ]
-    for r in direct:
-        lines.append(f"| {names.get(r[1], r[1])} | {vpn_cell(words, vpn.get(r[1]))} | {direct_cell(words, r)} |")
+    for sid in ids:
+        lines.append(f"| {names.get(sid, sid)} | {vpn_cell(words, vpn.get(sid))} | {direct_cell(words, direct.get(sid))} |")
     lines += ["", words["note"]]
     return "\n".join(lines)
 
@@ -441,7 +473,7 @@ def store(parsed: Parsed, root: Path) -> dict[str, int]:
     through = summarize_through(data / "through-proxysvpn", services)
     if through != read_rows(data / "summary-through-proxysvpn.csv", THROUGH_SUMMARY_FIELDS):
         write_rows(data / "summary-through-proxysvpn.csv", THROUGH_SUMMARY_FIELDS, through)
-    refresh_readme(root / "README.md", summary, through, services)
+    refresh_readme(root / "README.md", summarize_home(data / "hourly", services), through, services)
     write_atomic(root / "latest.json", json.dumps(parsed.document, ensure_ascii=False, indent=2) + "\n")
     return added
 

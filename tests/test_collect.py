@@ -154,15 +154,44 @@ class StoreTest(unittest.TestCase):
         through = rows(self.root / "data/summary-through-proxysvpn.csv")
         self.assertEqual([(r["service"], r["checks"], r["ok"]) for r in through], [("youtube", "1", "1"), ("x", "1", "1")])
         text = (self.root / "README.md").read_text(encoding="utf-8")
-        # With ProxysVPN first, ticked; without a VPN beside it, only the verdicts that happened.
+        # The fixture's direct rows predate HOME_SINCE (data-centre probes): the CSV counts them,
+        # the README table does not, and says so with a dash instead of a number.
         self.assertIn("| Service | With ProxysVPN | Without VPN |", text)
-        self.assertIn("| YouTube | ✅ opened 100% | did not open 100% |", text)
-        self.assertIn("| X (Twitter) | ✅ opened 100% | opened 50%, partly 50% |", text)
+        self.assertIn("| YouTube | ✅ opened 100% | — |", text)
+        self.assertIn("| X (Twitter) | ✅ opened 100% | — |", text)
         self.assertIn("| Сервис | С ProxysVPN | Без VPN |", text)
-        self.assertIn("| YouTube | ✅ открывался 100% | не открывался 100% |", text)
-        self.assertIn("Проверок без VPN: 2, через ProxysVPN: 1.", text)
+        self.assertIn("| YouTube | ✅ открывался 100% | — |", text)
+        self.assertIn("Проверок без VPN: 0, через ProxysVPN: 1.", text)
         self.assertNotIn("No data yet.", text)
         self.assertTrue(text.startswith("# Title"))
+
+    def test_readme_counts_only_home_network_rows(self) -> None:
+        later = datetime(2026, 11, 4, 3, 0, tzinfo=timezone.utc)
+        doc = document(
+            checked_at="2026-11-04T02:11:00Z",
+            through_proxysvpn={**document()["through_proxysvpn"], "checked_at": "2026-11-04T02:31:00Z"},
+            history=[
+                {"at": "2026-11-04T02:11:00Z", "verdicts": {"youtube": "blocked", "x": "partial"}},
+                {"at": "2026-11-04T01:11:00Z", "verdicts": {"youtube": "blocked", "x": "works"}},
+                {"at": "2026-11-04T00:11:00Z", "verdicts": {"youtube": "works", "x": "works"}},
+            ],
+        )
+        collect.store(collect.validate(raw(doc), later), self.root)
+        summary = rows(self.root / "data/summary.csv")
+        youtube = next(r for r in summary if r["service"] == "youtube")
+        self.assertEqual((youtube["checks"], youtube["works"], youtube["blocked"]), ("3", "1", "2"))
+        text = (self.root / "README.md").read_text(encoding="utf-8")
+        self.assertIn("| YouTube | ✅ opened 100% | did not open 100% |", text)
+        self.assertIn("| X (Twitter) | ✅ opened 100% | opened 50%, partly 50% |", text)
+        self.assertIn("| YouTube | ✅ открывался 100% | не открывался 100% |", text)
+        self.assertIn("Проверок без VPN: 2, через ProxysVPN: 1.", text)
+        self.assertIn("home networks", text)
+        self.assertIn("домашнем интернете", text)
+
+    def test_home_rows_start_at_the_cutoff(self) -> None:
+        self.assertFalse(collect.is_home(("2026-11-04T00:59:59Z", "x", "works")))
+        self.assertTrue(collect.is_home((collect.HOME_SINCE, "x", "works")))
+        self.assertTrue(collect.is_home(("2026-12-01T00:11:00Z", "x", "works")))
 
     def test_cells_tick_only_near_every_check_and_dash_without_data(self) -> None:
         words = collect.TABLES["ru"]
@@ -171,6 +200,10 @@ class StoreTest(unittest.TestCase):
         self.assertEqual(collect.vpn_cell(words, ("2026-11", "x", "10", "8", "0", "2", "0", "0")), "открывался 80%")
         self.assertEqual(collect.direct_cell(words, ("2026-11", "x", "4", "1", "0", "3", "0", "0")), "открывался 25%, не открывался 75%")
         self.assertEqual(collect.direct_cell(words, ("2026-11", "x", "0", "0", "0", "0", "0", "0")), "—")
+        self.assertEqual(collect.direct_cell(words, None), "—")
+
+    def test_table_without_any_row_says_so(self) -> None:
+        self.assertEqual(collect.table("en", [], [], []), collect.TABLES["en"]["empty"])
 
     def test_a_service_the_site_drops_stays_in_the_list(self) -> None:
         collect.store(collect.validate(raw(document()), NOW), self.root)
