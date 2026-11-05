@@ -391,7 +391,7 @@
     }
   ],
   "through_proxysvpn": {
-    "checked_at": "2026-11-04T23:31:06.402Z",
+    "checked_at": "2026-11-05T00:31:27.239Z",
     "protocol": "WataFast",
     "exit": "DE",
     "outcomes": {
