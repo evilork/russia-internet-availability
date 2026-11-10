@@ -3,7 +3,7 @@
   "license": "CC-BY-4.0",
   "source": "https://proxysvpn.com/rabotaet-li",
   "method": "Hourly HTTPS HEAD of each service's direct_host from the same set of Russian Globalping probes on home networks (tagged eyeball-network, networks that also run data-centre probes left out; since 2026-11-04, before that mostly data centres). Probes that fail ya.ru or www.google.com are dropped. ok = any HTTP answer except 403/451; refused = 403/451; blocked = timeout, reset or wrong certificate; dns = name not resolved. through_proxysvpn: the same check from our Moscow server through our WataFast protocol and one of our nodes abroad. The check only shows whether the site answers: in_russia marks services that do not serve Russia (closed) or serve it only in part (limited), whatever the site answers; the pages show that instead of works/partial.",
-  "checked_at": "2026-11-10T02:12:22.571Z",
+  "checked_at": "2026-11-10T07:12:12.143Z",
   "probe_network": "home",
   "points": [
     {
@@ -50,12 +50,12 @@
       "note": null,
       "ok": 0,
       "refused": 0,
-      "blocked": 6,
-      "dns": 2,
+      "blocked": 7,
+      "dns": 1,
       "counted": 8,
       "outcomes": [
         "dns",
-        "dns",
+        "blocked",
         "blocked",
         "blocked",
         "blocked",
@@ -98,12 +98,12 @@
       "note": "Проверяем веб-версию. Приложение подключается к своим серверам, этот замер его не видит.",
       "ok": 0,
       "refused": 0,
-      "blocked": 6,
-      "dns": 2,
+      "blocked": 7,
+      "dns": 1,
       "counted": 8,
       "outcomes": [
         "dns",
-        "dns",
+        "blocked",
         "blocked",
         "blocked",
         "blocked",
@@ -122,12 +122,12 @@
       "note": null,
       "ok": 0,
       "refused": 0,
-      "blocked": 6,
-      "dns": 2,
+      "blocked": 7,
+      "dns": 1,
       "counted": 8,
       "outcomes": [
         "dns",
-        "dns",
+        "blocked",
         "blocked",
         "blocked",
         "blocked",
@@ -146,12 +146,12 @@
       "note": null,
       "ok": 0,
       "refused": 0,
-      "blocked": 6,
-      "dns": 2,
+      "blocked": 7,
+      "dns": 1,
       "counted": 8,
       "outcomes": [
         "dns",
-        "dns",
+        "blocked",
         "blocked",
         "blocked",
         "blocked",
@@ -386,12 +386,12 @@
       "note": null,
       "ok": 0,
       "refused": 0,
-      "blocked": 6,
-      "dns": 2,
+      "blocked": 7,
+      "dns": 1,
       "counted": 8,
       "outcomes": [
         "dns",
-        "dns",
+        "blocked",
         "blocked",
         "blocked",
         "blocked",
@@ -402,7 +402,7 @@
     }
   ],
   "through_proxysvpn": {
-    "checked_at": "2026-11-10T01:32:00.489Z",
+    "checked_at": "2026-11-10T07:31:35.783Z",
     "protocol": "WataFast",
     "exit": "DE",
     "outcomes": {
@@ -424,6 +424,106 @@
     }
   },
   "history": [
+    {
+      "at": "2026-11-10T07:12:12.143Z",
+      "verdicts": {
+        "youtube": "blocked",
+        "telegram": "blocked",
+        "whatsapp": "blocked",
+        "instagram": "blocked",
+        "facebook": "blocked",
+        "x": "blocked",
+        "tiktok": "works",
+        "discord": "blocked",
+        "chatgpt": "refused",
+        "gemini": "works",
+        "signal": "blocked",
+        "viber": "blocked",
+        "twitch": "works",
+        "roblox": "works",
+        "linkedin": "blocked"
+      }
+    },
+    {
+      "at": "2026-11-10T06:12:21.892Z",
+      "verdicts": {
+        "youtube": "blocked",
+        "telegram": "blocked",
+        "whatsapp": "blocked",
+        "instagram": "blocked",
+        "facebook": "blocked",
+        "x": "blocked",
+        "tiktok": "works",
+        "discord": "blocked",
+        "chatgpt": "refused",
+        "gemini": "works",
+        "signal": "blocked",
+        "viber": "blocked",
+        "twitch": "works",
+        "roblox": "works",
+        "linkedin": "blocked"
+      }
+    },
+    {
+      "at": "2026-11-10T05:12:06.953Z",
+      "verdicts": {
+        "youtube": "blocked",
+        "telegram": "blocked",
+        "whatsapp": "blocked",
+        "instagram": "blocked",
+        "facebook": "blocked",
+        "x": "blocked",
+        "tiktok": "works",
+        "discord": "blocked",
+        "chatgpt": "refused",
+        "gemini": "works",
+        "signal": "blocked",
+        "viber": "blocked",
+        "twitch": "works",
+        "roblox": "works",
+        "linkedin": "blocked"
+      }
+    },
+    {
+      "at": "2026-11-10T04:12:22.798Z",
+      "verdicts": {
+        "youtube": "blocked",
+        "telegram": "blocked",
+        "whatsapp": "blocked",
+        "instagram": "blocked",
+        "facebook": "blocked",
+        "x": "blocked",
+        "tiktok": "works",
+        "discord": "blocked",
+        "chatgpt": "refused",
+        "gemini": "works",
+        "signal": "blocked",
+        "viber": "blocked",
+        "twitch": "works",
+        "roblox": "works",
+        "linkedin": "blocked"
+      }
+    },
+    {
+      "at": "2026-11-10T03:12:06.626Z",
+      "verdicts": {
+        "youtube": "blocked",
+        "telegram": "blocked",
+        "whatsapp": "blocked",
+        "instagram": "blocked",
+        "facebook": "blocked",
+        "x": "blocked",
+        "tiktok": "works",
+        "discord": "blocked",
+        "chatgpt": "refused",
+        "gemini": "works",
+        "signal": "blocked",
+        "viber": "blocked",
+        "twitch": "works",
+        "roblox": "works",
+        "linkedin": "blocked"
+      }
+    },
     {
       "at": "2026-11-10T02:12:22.571Z",
       "verdicts": {
@@ -786,106 +886,6 @@
     },
     {
       "at": "2026-11-09T08:12:16.257Z",
-      "verdicts": {
-        "youtube": "blocked",
-        "telegram": "blocked",
-        "whatsapp": "blocked",
-        "instagram": "blocked",
-        "facebook": "blocked",
-        "x": "blocked",
-        "tiktok": "works",
-        "discord": "blocked",
-        "chatgpt": "refused",
-        "gemini": "works",
-        "signal": "blocked",
-        "viber": "blocked",
-        "twitch": "works",
-        "roblox": "works",
-        "linkedin": "blocked"
-      }
-    },
-    {
-      "at": "2026-11-09T07:12:06.449Z",
-      "verdicts": {
-        "youtube": "blocked",
-        "telegram": "blocked",
-        "whatsapp": "blocked",
-        "instagram": "blocked",
-        "facebook": "blocked",
-        "x": "blocked",
-        "tiktok": "works",
-        "discord": "blocked",
-        "chatgpt": "refused",
-        "gemini": "works",
-        "signal": "blocked",
-        "viber": "blocked",
-        "twitch": "works",
-        "roblox": "works",
-        "linkedin": "blocked"
-      }
-    },
-    {
-      "at": "2026-11-09T06:12:11.968Z",
-      "verdicts": {
-        "youtube": "blocked",
-        "telegram": "blocked",
-        "whatsapp": "blocked",
-        "instagram": "blocked",
-        "facebook": "blocked",
-        "x": "blocked",
-        "tiktok": "works",
-        "discord": "blocked",
-        "chatgpt": "refused",
-        "gemini": "works",
-        "signal": "blocked",
-        "viber": "blocked",
-        "twitch": "works",
-        "roblox": "works",
-        "linkedin": "blocked"
-      }
-    },
-    {
-      "at": "2026-11-09T05:12:11.992Z",
-      "verdicts": {
-        "youtube": "blocked",
-        "telegram": "blocked",
-        "whatsapp": "blocked",
-        "instagram": "blocked",
-        "facebook": "blocked",
-        "x": "blocked",
-        "tiktok": "works",
-        "discord": "blocked",
-        "chatgpt": "refused",
-        "gemini": "works",
-        "signal": "blocked",
-        "viber": "blocked",
-        "twitch": "works",
-        "roblox": "works",
-        "linkedin": "blocked"
-      }
-    },
-    {
-      "at": "2026-11-09T04:12:06.845Z",
-      "verdicts": {
-        "youtube": "blocked",
-        "telegram": "blocked",
-        "whatsapp": "blocked",
-        "instagram": "blocked",
-        "facebook": "blocked",
-        "x": "blocked",
-        "tiktok": "works",
-        "discord": "blocked",
-        "chatgpt": "refused",
-        "gemini": "works",
-        "signal": "blocked",
-        "viber": "blocked",
-        "twitch": "works",
-        "roblox": "works",
-        "linkedin": "blocked"
-      }
-    },
-    {
-      "at": "2026-11-09T03:12:06.836Z",
       "verdicts": {
         "youtube": "blocked",
         "telegram": "blocked",
