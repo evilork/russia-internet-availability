@@ -7,23 +7,23 @@ Every hour the same set of measurement points in Russia opens the main page of e
 ## Latest month
 
 <!-- summary:en:start -->
-Month 2026-11 (UTC): in what share of hourly checks each service opened. Checks without a VPN: 196; through ProxysVPN: 64.
+Month 2026-11 (UTC): in what share of hourly checks each service opened. Checks without a VPN: 204; through ProxysVPN: 65.
 
 | Service | With ProxysVPN | Without VPN |
 | --- | --- | --- |
-| YouTube | ✅ opened 100% | did not open 99%, no data 1% |
-| Telegram | ✅ opened 100% | did not open 99%, no data 1% |
+| YouTube | ✅ opened 100% | did not open 100%, no data 0% |
+| Telegram | ✅ opened 100% | did not open 100%, no data 0% |
 | WhatsApp | ✅ opened 100% | did not open 100% |
 | Instagram | ✅ opened 100% | did not open 100% |
 | Facebook | ✅ opened 100% | did not open 100% |
 | X (Twitter) | ✅ opened 100% | did not open 100% |
 | TikTok | ✅ opened 100% | opened 100% |
 | Discord | ✅ opened 100% | did not open 100% |
-| ChatGPT | ✅ opened 100% | refused (403/451) 99%, no data 1% |
-| Gemini | ✅ opened 98% | opened 99%, no data 1% |
-| Signal | ✅ opened 98% | did not open 99%, no data 1% |
-| Viber | ✅ opened 100% | did not open 99%, no data 1% |
-| Twitch | ✅ opened 98% | opened 99%, no data 1% |
+| ChatGPT | ✅ opened 100% | refused (403/451) 100%, no data 0% |
+| Gemini | ✅ opened 98% | opened 100%, no data 0% |
+| Signal | ✅ opened 98% | did not open 100%, no data 0% |
+| Viber | ✅ opened 100% | did not open 100%, no data 0% |
+| Twitch | ✅ opened 98% | opened 100%, no data 0% |
 | Roblox | ✅ opened 98% | opened 100% |
 | LinkedIn | ✅ opened 100% | did not open 100% |
 
@@ -87,23 +87,23 @@ Questions: [proxysvpn.com/en/support](https://proxysvpn.com/en/support).
 Каждый час одни и те же точки в России открывают по HTTPS главную страницу каждого сервиса (у Signal — его сервер для приложения chat.signal.org): YouTube, Telegram, WhatsApp, Instagram, Facebook, X, TikTok, Discord, ChatGPT, Gemini, Signal, Viber, Twitch, Roblox и LinkedIn. Точки — публичная сеть [Globalping](https://globalping.io) на домашнем интернете разных городов и операторов, с 4 ноября 2026. Раньше это были в основном серверы в дата-центрах, где блокировки часто не действуют: те строки остаются в `data/hourly`, таблица ниже их не считает. Точку, с которой не открылись Яндекс или Google, мы не считаем: у неё неисправна сама связь.
 
 <!-- summary:ru:start -->
-Месяц 2026-11 (UTC): в какой доле ежечасных проверок сервис открывался. Проверок без VPN: 196, через ProxysVPN: 64.
+Месяц 2026-11 (UTC): в какой доле ежечасных проверок сервис открывался. Проверок без VPN: 204, через ProxysVPN: 65.
 
 | Сервис | С ProxysVPN | Без VPN |
 | --- | --- | --- |
-| YouTube | ✅ открывался 100% | не открывался 99%, нет данных 1% |
-| Telegram | ✅ открывался 100% | не открывался 99%, нет данных 1% |
+| YouTube | ✅ открывался 100% | не открывался 100%, нет данных 0% |
+| Telegram | ✅ открывался 100% | не открывался 100%, нет данных 0% |
 | WhatsApp | ✅ открывался 100% | не открывался 100% |
 | Instagram | ✅ открывался 100% | не открывался 100% |
 | Facebook | ✅ открывался 100% | не открывался 100% |
 | X (Twitter) | ✅ открывался 100% | не открывался 100% |
 | TikTok | ✅ открывался 100% | открывался 100% |
 | Discord | ✅ открывался 100% | не открывался 100% |
-| ChatGPT | ✅ открывался 100% | отказ (403/451) 99%, нет данных 1% |
-| Gemini | ✅ открывался 98% | открывался 99%, нет данных 1% |
-| Signal | ✅ открывался 98% | не открывался 99%, нет данных 1% |
-| Viber | ✅ открывался 100% | не открывался 99%, нет данных 1% |
-| Twitch | ✅ открывался 98% | открывался 99%, нет данных 1% |
+| ChatGPT | ✅ открывался 100% | отказ (403/451) 100%, нет данных 0% |
+| Gemini | ✅ открывался 98% | открывался 100%, нет данных 0% |
+| Signal | ✅ открывался 98% | не открывался 100%, нет данных 0% |
+| Viber | ✅ открывался 100% | не открывался 100%, нет данных 0% |
+| Twitch | ✅ открывался 98% | открывался 100%, нет данных 0% |
 | Roblox | ✅ открывался 98% | открывался 100% |
 | LinkedIn | ✅ открывался 100% | не открывался 100% |
 
