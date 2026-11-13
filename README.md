@@ -7,7 +7,7 @@ Every hour the same set of measurement points in Russia opens the main page of e
 ## Latest month
 
 <!-- summary:en:start -->
-Month 2026-11 (UTC): in what share of hourly checks each service opened. Checks without a VPN: 212; through ProxysVPN: 66.
+Month 2026-11 (UTC): in what share of hourly checks each service opened. Checks without a VPN: 217; through ProxysVPN: 67.
 
 | Service | With ProxysVPN | Without VPN |
 | --- | --- | --- |
@@ -20,11 +20,11 @@ Month 2026-11 (UTC): in what share of hourly checks each service opened. Checks 
 | TikTok | ✅ opened 100% | opened 100% |
 | Discord | ✅ opened 100% | did not open 100% |
 | ChatGPT | ✅ opened 100% | refused (403/451) 100%, no data 0% |
-| Gemini | ✅ opened 98% | opened 100%, no data 0% |
-| Signal | ✅ opened 98% | did not open 100%, no data 0% |
+| Gemini | ✅ opened 99% | opened 100%, no data 0% |
+| Signal | ✅ opened 99% | did not open 100%, no data 0% |
 | Viber | ✅ opened 100% | did not open 100%, no data 0% |
-| Twitch | ✅ opened 98% | opened 100%, no data 0% |
-| Roblox | ✅ opened 98% | opened 100% |
+| Twitch | ✅ opened 99% | opened 100%, no data 0% |
+| Roblox | ✅ opened 99% | opened 100% |
 | LinkedIn | ✅ opened 100% | did not open 100% |
 
 «With ProxysVPN»: our own check from our server in Moscow through ProxysVPN. «Without VPN»: public Globalping points on Russian home networks; this table counts only checks since 4 November 2026, 01:00 UTC (earlier rows in `data/hourly` come from mostly data-centre points). Counts of every row: `data/summary.csv` and `data/summary-through-proxysvpn.csv`. Updated automatically.
@@ -87,7 +87,7 @@ Questions: [proxysvpn.com/en/support](https://proxysvpn.com/en/support).
 Каждый час одни и те же точки в России открывают по HTTPS главную страницу каждого сервиса (у Signal — его сервер для приложения chat.signal.org): YouTube, Telegram, WhatsApp, Instagram, Facebook, X, TikTok, Discord, ChatGPT, Gemini, Signal, Viber, Twitch, Roblox и LinkedIn. Точки — публичная сеть [Globalping](https://globalping.io) на домашнем интернете разных городов и операторов, с 4 ноября 2026. Раньше это были в основном серверы в дата-центрах, где блокировки часто не действуют: те строки остаются в `data/hourly`, таблица ниже их не считает. Точку, с которой не открылись Яндекс или Google, мы не считаем: у неё неисправна сама связь.
 
 <!-- summary:ru:start -->
-Месяц 2026-11 (UTC): в какой доле ежечасных проверок сервис открывался. Проверок без VPN: 212, через ProxysVPN: 66.
+Месяц 2026-11 (UTC): в какой доле ежечасных проверок сервис открывался. Проверок без VPN: 217, через ProxysVPN: 67.
 
 | Сервис | С ProxysVPN | Без VPN |
 | --- | --- | --- |
@@ -100,11 +100,11 @@ Questions: [proxysvpn.com/en/support](https://proxysvpn.com/en/support).
 | TikTok | ✅ открывался 100% | открывался 100% |
 | Discord | ✅ открывался 100% | не открывался 100% |
 | ChatGPT | ✅ открывался 100% | отказ (403/451) 100%, нет данных 0% |
-| Gemini | ✅ открывался 98% | открывался 100%, нет данных 0% |
-| Signal | ✅ открывался 98% | не открывался 100%, нет данных 0% |
+| Gemini | ✅ открывался 99% | открывался 100%, нет данных 0% |
+| Signal | ✅ открывался 99% | не открывался 100%, нет данных 0% |
 | Viber | ✅ открывался 100% | не открывался 100%, нет данных 0% |
-| Twitch | ✅ открывался 98% | открывался 100%, нет данных 0% |
-| Roblox | ✅ открывался 98% | открывался 100% |
+| Twitch | ✅ открывался 99% | открывался 100%, нет данных 0% |
+| Roblox | ✅ открывался 99% | открывался 100% |
 | LinkedIn | ✅ открывался 100% | не открывался 100% |
 
 «С ProxysVPN» — наша проверка с нашего сервера в Москве через ProxysVPN. «Без VPN» — публичные точки Globalping на домашнем интернете в России; в таблице только проверки с 4 ноября 2026, 01:00 UTC (более ранние строки в `data/hourly` — в основном с серверов в дата-центрах). Счётчики всех строк: `data/summary.csv` и `data/summary-through-proxysvpn.csv`. Обновляется автоматически.
