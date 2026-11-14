@@ -1049,3 +1049,16 @@ checked_at,service,verdict,ok,refused,blocked,dns,counted
 2026-11-13T23:12:07Z,whatsapp,blocked,1,0,7,1,9
 2026-11-13T23:12:07Z,x,blocked,1,0,8,0,9
 2026-11-13T23:12:07Z,youtube,blocked,1,0,7,1,9
+2026-11-14T06:12:31Z,discord,unknown,0,0,0,0,0
+2026-11-14T06:12:31Z,facebook,unknown,0,0,0,0,0
+2026-11-14T06:12:31Z,gemini,unknown,0,0,0,0,0
+2026-11-14T06:12:31Z,instagram,unknown,0,0,0,0,0
+2026-11-14T06:12:31Z,roblox,unknown,0,0,0,0,0
+2026-11-14T06:12:31Z,signal,unknown,0,0,0,0,0
+2026-11-14T06:12:31Z,telegram,unknown,0,0,0,0,0
+2026-11-14T06:12:31Z,tiktok,unknown,0,0,0,0,0
+2026-11-14T06:12:31Z,twitch,unknown,0,0,0,0,0
+2026-11-14T06:12:31Z,viber,unknown,0,0,0,0,0
+2026-11-14T06:12:31Z,whatsapp,unknown,0,0,0,0,0
+2026-11-14T06:12:31Z,x,unknown,0,0,0,0,0
+2026-11-14T06:12:31Z,youtube,unknown,0,0,0,0,0
