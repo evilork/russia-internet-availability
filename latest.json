@@ -402,7 +402,7 @@
     }
   ],
   "through_proxysvpn": {
-    "checked_at": "2026-11-23T02:31:38.583Z",
+    "checked_at": "2026-11-23T03:31:21.763Z",
     "protocol": "WataFast",
     "exit": "DE",
     "outcomes": {
