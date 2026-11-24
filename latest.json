@@ -3,7 +3,7 @@
   "license": "CC-BY-4.0",
   "source": "https://proxysvpn.com/rabotaet-li",
   "method": "Hourly HTTPS HEAD of each service's direct_host from the same set of Russian Globalping probes on home networks (tagged eyeball-network, networks that also run data-centre probes left out; since 2026-11-04, before that mostly data centres). Probes that fail ya.ru or www.google.com are dropped. ok = any HTTP answer except 403/451; refused = 403/451; blocked = timeout, reset or wrong certificate; dns = name not resolved. through_proxysvpn: the same check from our Moscow server through our WataFast protocol and one of our nodes abroad. The check only shows whether the site answers: in_russia marks services that do not serve Russia (closed) or serve it only in part (limited), whatever the site answers; the pages show that instead of works/partial.",
-  "checked_at": "2026-11-24T11:12:10.702Z",
+  "checked_at": "2026-11-24T12:12:11.291Z",
   "probe_network": "home",
   "points": [
     {
@@ -31,12 +31,12 @@
       "network": "Moscow city telephone network"
     },
     {
-      "city": "Tomsk",
-      "network": "Limited Company Information and Consulting Agency"
+      "city": "Novokuznetsk",
+      "network": "Regional Digital Telecommunication Company"
     },
     {
-      "city": "Mytishchi",
-      "network": "Information and Communication Technologies"
+      "city": "Tomsk",
+      "network": "Limited Company Information and Consulting Agency"
     }
   ],
   "services": [
@@ -50,17 +50,17 @@
       "note": null,
       "ok": 0,
       "refused": 0,
-      "blocked": 7,
-      "dns": 1,
+      "blocked": 5,
+      "dns": 3,
       "counted": 8,
       "outcomes": [
+        "dns",
         "dns",
         "blocked",
         "blocked",
         "blocked",
         "blocked",
-        "blocked",
-        "blocked",
+        "dns",
         "blocked"
       ]
     },
@@ -98,17 +98,17 @@
       "note": "Проверяем веб-версию. Приложение подключается к своим серверам, этот замер его не видит.",
       "ok": 1,
       "refused": 0,
-      "blocked": 6,
-      "dns": 1,
+      "blocked": 4,
+      "dns": 3,
       "counted": 8,
       "outcomes": [
+        "dns",
         "dns",
         "blocked",
         "blocked",
         "blocked",
-        "blocked",
         "ok",
-        "blocked",
+        "dns",
         "blocked"
       ]
     },
@@ -122,17 +122,17 @@
       "note": null,
       "ok": 0,
       "refused": 0,
-      "blocked": 6,
-      "dns": 2,
+      "blocked": 4,
+      "dns": 4,
       "counted": 8,
       "outcomes": [
         "dns",
-        "blocked",
+        "dns",
         "blocked",
         "blocked",
         "dns",
         "blocked",
-        "blocked",
+        "dns",
         "blocked"
       ]
     },
@@ -146,17 +146,17 @@
       "note": null,
       "ok": 0,
       "refused": 0,
-      "blocked": 6,
-      "dns": 2,
+      "blocked": 4,
+      "dns": 4,
       "counted": 8,
       "outcomes": [
         "dns",
-        "blocked",
+        "dns",
         "blocked",
         "blocked",
         "dns",
         "blocked",
-        "blocked",
+        "dns",
         "blocked"
       ]
     },
@@ -168,9 +168,9 @@
       "verdict": "blocked",
       "in_russia": null,
       "note": null,
-      "ok": 1,
+      "ok": 2,
       "refused": 0,
-      "blocked": 7,
+      "blocked": 6,
       "dns": 0,
       "counted": 8,
       "outcomes": [
@@ -179,7 +179,7 @@
         "blocked",
         "blocked",
         "ok",
-        "blocked",
+        "ok",
         "blocked",
         "blocked"
       ]
@@ -288,9 +288,9 @@
       "verdict": "blocked",
       "in_russia": null,
       "note": null,
-      "ok": 2,
+      "ok": 1,
       "refused": 0,
-      "blocked": 6,
+      "blocked": 7,
       "dns": 0,
       "counted": 8,
       "outcomes": [
@@ -298,7 +298,7 @@
         "blocked",
         "blocked",
         "blocked",
-        "ok",
+        "blocked",
         "ok",
         "blocked",
         "blocked"
@@ -386,23 +386,23 @@
       "note": null,
       "ok": 0,
       "refused": 0,
-      "blocked": 7,
-      "dns": 1,
+      "blocked": 5,
+      "dns": 3,
       "counted": 8,
       "outcomes": [
+        "dns",
         "dns",
         "blocked",
         "blocked",
         "blocked",
         "blocked",
-        "blocked",
-        "blocked",
+        "dns",
         "blocked"
       ]
     }
   ],
   "through_proxysvpn": {
-    "checked_at": "2026-11-24T11:31:58.176Z",
+    "checked_at": "2026-11-24T12:31:36.333Z",
     "protocol": "WataFast",
     "exit": "DE",
     "outcomes": {
@@ -419,11 +419,31 @@
       "signal": "ok",
       "viber": "ok",
       "twitch": "ok",
-      "roblox": "ok",
+      "roblox": "blocked",
       "linkedin": "ok"
     }
   },
   "history": [
+    {
+      "at": "2026-11-24T12:12:11.291Z",
+      "verdicts": {
+        "youtube": "blocked",
+        "telegram": "blocked",
+        "whatsapp": "blocked",
+        "instagram": "blocked",
+        "facebook": "blocked",
+        "x": "blocked",
+        "tiktok": "works",
+        "discord": "blocked",
+        "chatgpt": "refused",
+        "gemini": "works",
+        "signal": "blocked",
+        "viber": "blocked",
+        "twitch": "works",
+        "roblox": "works",
+        "linkedin": "blocked"
+      }
+    },
     {
       "at": "2026-11-24T11:12:10.702Z",
       "verdicts": {
@@ -866,26 +886,6 @@
     },
     {
       "at": "2026-11-23T13:12:11.330Z",
-      "verdicts": {
-        "youtube": "blocked",
-        "telegram": "blocked",
-        "whatsapp": "blocked",
-        "instagram": "blocked",
-        "facebook": "blocked",
-        "x": "blocked",
-        "tiktok": "works",
-        "discord": "blocked",
-        "chatgpt": "refused",
-        "gemini": "works",
-        "signal": "blocked",
-        "viber": "blocked",
-        "twitch": "works",
-        "roblox": "works",
-        "linkedin": "blocked"
-      }
-    },
-    {
-      "at": "2026-11-23T12:12:11.135Z",
       "verdicts": {
         "youtube": "blocked",
         "telegram": "blocked",
