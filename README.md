@@ -7,21 +7,21 @@ Every hour the same set of measurement points in Russia opens the main page of e
 ## Latest month
 
 <!-- summary:en:start -->
-Month 2026-11 (UTC): in what share of hourly checks each service opened. Checks without a VPN: 489; through ProxysVPN: 127.
+Month 2026-11 (UTC): in what share of hourly checks each service opened. Checks without a VPN: 498; through ProxysVPN: 128.
 
 | Service | With ProxysVPN | Without VPN |
 | --- | --- | --- |
 | YouTube | ✅ opened 100% | did not open 99%, no data 1% |
 | Telegram | ✅ opened 100% | did not open 99%, no data 1% |
-| WhatsApp | ✅ opened 100% | did not open 100%, no data 0% |
+| WhatsApp | ✅ opened 100% | partly 0%, did not open 99%, no data 0% |
 | Instagram | ✅ opened 100% | did not open 99%, no data 1% |
 | Facebook | ✅ opened 100% | did not open 99%, no data 1% |
-| X (Twitter) | ✅ opened 100% | did not open 99%, no data 1% |
+| X (Twitter) | ✅ opened 100% | partly 0%, did not open 99%, no data 1% |
 | TikTok | ✅ opened 100% | opened 100%, no data 0% |
-| Discord | ✅ opened 100% | partly 1%, did not open 99%, no data 0% |
+| Discord | ✅ opened 100% | partly 2%, did not open 98%, no data 0% |
 | ChatGPT | ✅ opened 100% | did not open 1%, refused (403/451) 98%, no data 0% |
 | Gemini | ✅ opened 98% | opened 99%, no data 1% |
-| Signal | ✅ opened 99% | partly 0%, did not open 99%, no data 1% |
+| Signal | ✅ opened 99% | partly 1%, did not open 99%, no data 1% |
 | Viber | ✅ opened 99% | did not open 99%, no data 1% |
 | Twitch | ✅ opened 98% | opened 99%, no data 1% |
 | Roblox | ✅ opened 98% | opened 99%, no data 1% |
@@ -87,21 +87,21 @@ Questions: [proxysvpn.com/en/support](https://proxysvpn.com/en/support).
 Каждый час одни и те же точки в России открывают по HTTPS главную страницу каждого сервиса (у Signal — его сервер для приложения chat.signal.org): YouTube, Telegram, WhatsApp, Instagram, Facebook, X, TikTok, Discord, ChatGPT, Gemini, Signal, Viber, Twitch, Roblox и LinkedIn. Точки — публичная сеть [Globalping](https://globalping.io) на домашнем интернете разных городов и операторов, с 4 ноября 2026. Раньше это были в основном серверы в дата-центрах, где блокировки часто не действуют: те строки остаются в `data/hourly`, таблица ниже их не считает. Точку, с которой не открылись Яндекс или Google, мы не считаем: у неё неисправна сама связь.
 
 <!-- summary:ru:start -->
-Месяц 2026-11 (UTC): в какой доле ежечасных проверок сервис открывался. Проверок без VPN: 489, через ProxysVPN: 127.
+Месяц 2026-11 (UTC): в какой доле ежечасных проверок сервис открывался. Проверок без VPN: 498, через ProxysVPN: 128.
 
 | Сервис | С ProxysVPN | Без VPN |
 | --- | --- | --- |
 | YouTube | ✅ открывался 100% | не открывался 99%, нет данных 1% |
 | Telegram | ✅ открывался 100% | не открывался 99%, нет данных 1% |
-| WhatsApp | ✅ открывался 100% | не открывался 100%, нет данных 0% |
+| WhatsApp | ✅ открывался 100% | частично 0%, не открывался 99%, нет данных 0% |
 | Instagram | ✅ открывался 100% | не открывался 99%, нет данных 1% |
 | Facebook | ✅ открывался 100% | не открывался 99%, нет данных 1% |
-| X (Twitter) | ✅ открывался 100% | не открывался 99%, нет данных 1% |
+| X (Twitter) | ✅ открывался 100% | частично 0%, не открывался 99%, нет данных 1% |
 | TikTok | ✅ открывался 100% | открывался 100%, нет данных 0% |
-| Discord | ✅ открывался 100% | частично 1%, не открывался 99%, нет данных 0% |
+| Discord | ✅ открывался 100% | частично 2%, не открывался 98%, нет данных 0% |
 | ChatGPT | ✅ открывался 100% | не открывался 1%, отказ (403/451) 98%, нет данных 0% |
 | Gemini | ✅ открывался 98% | открывался 99%, нет данных 1% |
-| Signal | ✅ открывался 99% | частично 0%, не открывался 99%, нет данных 1% |
+| Signal | ✅ открывался 99% | частично 1%, не открывался 99%, нет данных 1% |
 | Viber | ✅ открывался 99% | не открывался 99%, нет данных 1% |
 | Twitch | ✅ открывался 98% | открывался 99%, нет данных 1% |
 | Roblox | ✅ открывался 98% | открывался 99%, нет данных 1% |
