@@ -7,7 +7,7 @@ Every hour the same set of measurement points in Russia opens the main page of e
 ## Latest month
 
 <!-- summary:en:start -->
-Month 2026-11 (UTC): in what share of hourly checks each service opened. Checks without a VPN: 535; through ProxysVPN: 136.
+Month 2026-11 (UTC): in what share of hourly checks each service opened. Checks without a VPN: 540; through ProxysVPN: 137.
 
 | Service | With ProxysVPN | Without VPN |
 | --- | --- | --- |
@@ -19,7 +19,7 @@ Month 2026-11 (UTC): in what share of hourly checks each service opened. Checks 
 | X (Twitter) | ✅ opened 100% | partly 0%, did not open 99%, no data 1% |
 | TikTok | ✅ opened 100% | opened 100%, no data 0% |
 | Discord | ✅ opened 100% | partly 3%, did not open 96%, no data 0% |
-| ChatGPT | ✅ opened 100% | did not open 1%, refused (403/451) 98%, no data 0% |
+| ChatGPT | ✅ opened 100% | did not open 1%, refused (403/451) 99%, no data 0% |
 | Gemini | ✅ opened 99% | opened 99%, no data 1% |
 | Signal | ✅ opened 99% | partly 1%, did not open 99%, no data 1% |
 | Viber | ✅ opened 99% | did not open 99%, no data 1% |
@@ -87,7 +87,7 @@ Questions: [proxysvpn.com/en/support](https://proxysvpn.com/en/support).
 Каждый час одни и те же точки в России открывают по HTTPS главную страницу каждого сервиса (у Signal — его сервер для приложения chat.signal.org): YouTube, Telegram, WhatsApp, Instagram, Facebook, X, TikTok, Discord, ChatGPT, Gemini, Signal, Viber, Twitch, Roblox и LinkedIn. Точки — публичная сеть [Globalping](https://globalping.io) на домашнем интернете разных городов и операторов, с 4 ноября 2026. Раньше это были в основном серверы в дата-центрах, где блокировки часто не действуют: те строки остаются в `data/hourly`, таблица ниже их не считает. Точку, с которой не открылись Яндекс или Google, мы не считаем: у неё неисправна сама связь.
 
 <!-- summary:ru:start -->
-Месяц 2026-11 (UTC): в какой доле ежечасных проверок сервис открывался. Проверок без VPN: 535, через ProxysVPN: 136.
+Месяц 2026-11 (UTC): в какой доле ежечасных проверок сервис открывался. Проверок без VPN: 540, через ProxysVPN: 137.
 
 | Сервис | С ProxysVPN | Без VPN |
 | --- | --- | --- |
@@ -99,7 +99,7 @@ Questions: [proxysvpn.com/en/support](https://proxysvpn.com/en/support).
 | X (Twitter) | ✅ открывался 100% | частично 0%, не открывался 99%, нет данных 1% |
 | TikTok | ✅ открывался 100% | открывался 100%, нет данных 0% |
 | Discord | ✅ открывался 100% | частично 3%, не открывался 96%, нет данных 0% |
-| ChatGPT | ✅ открывался 100% | не открывался 1%, отказ (403/451) 98%, нет данных 0% |
+| ChatGPT | ✅ открывался 100% | не открывался 1%, отказ (403/451) 99%, нет данных 0% |
 | Gemini | ✅ открывался 99% | открывался 99%, нет данных 1% |
 | Signal | ✅ открывался 99% | частично 1%, не открывался 99%, нет данных 1% |
 | Viber | ✅ открывался 99% | не открывался 99%, нет данных 1% |
